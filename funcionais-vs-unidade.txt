@@ -1,0 +1,2 @@
+Testes Funcionais testam o sistema como um todo, simulando um usuario 
+Testes de Unidade testam partes pequenas do codigo, como funções e métodos 
