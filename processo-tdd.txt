@@ -1,0 +1,4 @@
+Neste processo, escrevemos um teste funcional e o executamos.
+Se ele falhar, implementamos o mínimo de código necessário.
+Durante esse processo, escrevemos testes unitários, fazemos 
+o código passar e refatoramos se necessário.
