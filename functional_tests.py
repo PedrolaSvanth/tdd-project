@@ -35,16 +35,21 @@ class NewVisitorTest(unittest.TestCase):
         time.sleep(1)
         
         table = self.browser.find_element(By.ID, 'id_list_table')
-        rows = table.find_elements(By.TAG_NAME, 'tr') 
-        self.assertTrue(
-            any(row.text == '1: Estudar testes funcionais' for row in rows),
-            "New to-do item did not appear in table"
-        )
+        rows = table.find_elements(By.TAG_NAME, 'tr')
+        self.assertIn('1: Estudar testes funcionais', [row.text for row in rows])
         
         # Ainda existe uma caixa de texto convidando para adicionar outro item
         # Ela digita: "Estudar testes de unidade"
+        inputbox = self.browser.find_element(By.ID, 'id_new_item')
+        inputbox.send_keys('Estudar testes de unidade')
+        inputbox.send_keys(Keys.ENTER)
+        time.sleep(1)
 
         # A página atualiza novamente, e agora mostra ambos os itens na sua lista
+        table = self.browser.find_element(By.ID, 'id_list_table')
+        rows = table.find_elements(By.TAG_NAME, 'tr')
+        self.assertIn('1: Estudar testes funcionais', [row.text for row in rows])
+        self.assertIn('2: Estudar testes de unidade', [row.text for row in rows])
 
         # Maria se pergunta se o site vai lembrar da sua lista. Então, ela verifica que
         # o site gerou uma URL única para ela -- existe uma explicação sobre essa feature
