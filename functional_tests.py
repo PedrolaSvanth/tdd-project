@@ -12,6 +12,11 @@ class NewVisitorTest(unittest.TestCase):
     def tearDown(self):
         self.browser.quit()
 
+    def check_for_row_in_list_table(self, row_text):
+        table = self.browser.find_element(By.ID, 'id_list_table')
+        rows = table.find_elements(By.TAG_NAME, 'tr')
+        self.assertIn(row_text, [row.text for row in rows])
+
     def test_can_start_a_list_and_retrieve_it_later(self): 
     
         # Maria decidiu utilizar o novo app TODO. Ela entra em sua página principal:
@@ -33,6 +38,7 @@ class NewVisitorTest(unittest.TestCase):
         # "1: Estudar testes funcionais" como um item da lista TODO
         inputbox.send_keys(Keys.ENTER)
         time.sleep(1)
+        self.check_for_row_in_list_table('1: Estudar testes funcionais')
         
         table = self.browser.find_element(By.ID, 'id_list_table')
         rows = table.find_elements(By.TAG_NAME, 'tr')
