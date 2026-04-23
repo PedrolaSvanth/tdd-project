@@ -85,7 +85,7 @@ class NewVisitorTest(LiveServerTestCase):
 
         # João visita a página inicial. Não existe nenhum sinal da lista de Maria
         self.browser.get(self.live_server_url)
-        page_text = self.browser.find_element(By.TAG_NAME, 'body')
+        page_text = self.browser.find_element(By.TAG_NAME, 'body').text
         self.assertNotIn('1: Estudar testes funcionais', page_text)
         self.assertNotIn('2: Estudar testes de unidade', page_text)
 
