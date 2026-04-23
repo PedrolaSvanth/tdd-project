@@ -22,7 +22,7 @@ urlpatterns = [
     path('lists/new', views.new_list, name='new_list'),
     path('lists/<int:list_id>/', views.view_list, name='view_list'),
 
-    # 👇 necessário para passar no teste atual
+    # necessário para o teste atual
     path(
         'lists/the-only-list-in-the-world/',
         views.view_list,
